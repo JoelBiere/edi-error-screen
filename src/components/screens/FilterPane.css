@@ -1,0 +1,89 @@
+input[type="checkbox"] {
+    border-radius: 3px;
+}
+
+.filterBox {
+    display: grid;
+    height: 15vh;
+    grid-template-areas: 
+    "header header header"
+    "switchLabel orderLabel orderLabel" 
+    "switch orderBy orderBy";
+
+    grid-template-columns: 30% 33% auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px; 
+    
+}
+
+.switch {
+    grid-area: switch;
+}
+
+.orderBy {
+    grid-area: orderBy;
+    width: fit-content;
+    height: 30px;
+    box-shadow: none;
+}
+
+.orderBy:active{
+    box-shadow: none;
+    background-color: #6C757D;
+}
+
+.header {
+    grid-area: header;
+    height: 10px;
+    
+}
+
+.switchLabel {
+    grid-area: switchLabel;
+}
+
+.orderLabel {
+    grid-area: orderLabel;
+}
+
+.metricsBox {
+    
+    display: grid;
+    height: 18vh;
+    grid-template-areas: 
+    "spacer header header header header"
+    "spacer fact1 fact2 fact3 fact4" ;
+    grid-template-columns: 20% fit-content fit-content fit-content fit-content;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px; 
+}
+.fact1{
+    grid-area: fact1;
+    
+}
+
+.fact2{
+    grid-area: fact2;
+}
+
+.fact3{
+    grid-area: fact3;
+}
+
+.fact4{
+    grid-area: fact4;
+}
+
+.activityBox {
+    display: grid;
+    height: 18vh;
+    grid-template-areas:
+        "header header"
+        "content content";
+    grid-row-gap: 0px; 
+    
+}
+
+.content{
+    grid-area: 'content';
+}

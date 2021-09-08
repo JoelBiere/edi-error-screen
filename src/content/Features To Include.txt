@@ -1,0 +1,24 @@
+Features To Include
+
+2. Search errors
+
+5. Different views for 214 Errors
+6. Permissions / Users
+a. Operating Companies permissions
+7. Metrics of Users
+8. Tracking Users�who touched the cards
+9. Resolved
+a. Pending resolution
+b. Test Resolution
+i. Calls validation service
+10. 
+
+
+Support Needed From Microservice or Backend
+
+1. Create Solution mapping
+
+
+NEXT STEPS:
+
+3. handle sorting cards

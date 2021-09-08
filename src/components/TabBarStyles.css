@@ -1,0 +1,21 @@
+.tabItem {
+    cursor: pointer;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid rgb(221, 217, 217) ;
+    color: white;
+}
+
+.tabItem:hover {
+    border: 1px solid rgb(221, 217, 217);
+}
+
+.navLink {
+    color:black;
+    font-size: large;
+}
+
+.tabItem img{
+    height: 6vh;
+    width: 8vw;
+}

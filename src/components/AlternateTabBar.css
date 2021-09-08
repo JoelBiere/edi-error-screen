@@ -1,0 +1,17 @@
+.tabs img{
+    height: 6vh;
+    width: 8vw;
+    max-height: 70px;
+    max-width: 150px;
+    min-height: 30px;
+    min-width: 110px;
+}
+
+#imcImage{
+    height: 12vh;
+    width: 8vw;
+    max-height: 140px;
+    max-width: 150px;
+    min-height: 60px;
+    min-width: 110px;
+}

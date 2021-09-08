@@ -1,0 +1,50 @@
+.mainContainer{
+    
+    padding: 20px;
+    overflow: auto;
+    height: 68vh;
+}
+
+.bigSection {
+    margin: 10px;
+}
+
+.leftCol {
+    background: #a8dadc;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    padding: 13px 0;
+    text-align: center;
+    font-size: large;
+    max-width: 180px;
+    
+}
+
+.rightCol {
+    font-size: large;
+    padding: 13px 5px;
+
+}
+
+.tableRow{
+    margin: 8px;
+}
+
+.errMsg {
+    color: #E63946;
+}
+
+.topButtons {
+    right: 20px;
+    top: 8vh;
+    float: right;
+    
+}
+
+li{
+    margin: 10px 0;
+}
+
+.opaque {
+    opacity: 30%;
+}

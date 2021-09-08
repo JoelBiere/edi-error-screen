@@ -1,0 +1,57 @@
+.unselected {
+    display: grid;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0px #bbb7b7fc;
+    transition: 0.3s;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 120px;
+    background: #f1faee;
+    text-align: center;
+    grid-template-areas: 
+        "dptLabel date date" 
+        "err err err" 
+        "company company price";
+    grid-template-columns: 80px auto 50px;
+}
+
+.unselected:hover {
+    box-shadow: 0 6px 16px #ffffff;
+}
+
+.selected {
+    display: grid;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0px #bbb7b7fc;
+    transition: 0.3s;
+    animation-name: grow;
+    animation-fill-mode: forwards;
+    animation-duration: .3s;
+    height: 120px;
+    background: #f1faee;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    grid-template-areas: 
+        "dptLabel date date" 
+        "err err err" 
+        "company company price";
+    grid-template-columns: 80px auto 50px;
+    cursor: pointer;
+}
+
+.selected:hover {
+    box-shadow: 0 6px 16px #ffffff;
+}
+
+@keyframes grow {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+        background: #a8dadc;
+        font: large;
+    }
+}
