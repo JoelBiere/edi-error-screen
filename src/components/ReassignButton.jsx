@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
+import { DownOutlined, UserOutlined } from '@ant-design/icons';
+// import { Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import * as department from '../ImcDepartments'
 import store from '../store';
 import { cardReassigned, cardReassignedAlert } from '../actions/actions'
 
 const ReassignButton = (props) => {
-    const [dropdownOpen, setOpen] = useState(false);
-
-    const toggle = () => setOpen(!dropdownOpen);
     
+
     const handleReassign = (newDepartment) =>{
         store.dispatch(cardReassigned( newDepartment, props.errorID))
         store.dispatch(cardReassignedAlert(newDepartment, props.errorID, props.department))
@@ -25,19 +25,26 @@ const ReassignButton = (props) => {
                 }
             }
         }
-        return otherDepartments.map(otherDepartment => <DropdownItem onClick={() => handleReassign(otherDepartment)} >{otherDepartment}</DropdownItem>)
+        return otherDepartments.map(otherDepartment => <Menu.Item onClick={() => handleReassign(otherDepartment)} >{otherDepartment}</Menu.Item>)
     }
+
+    const menu = (
+        <Menu >
+            <Menu.Item disabled> 
+                {props.department}
+            </Menu.Item>
+            <Menu.Divider />
+            {generateNotActiveDepartments()}
+        </Menu>
+    )
 
     return (
 
-        <ButtonDropdown isOpen={dropdownOpen} toggle={toggle} color="secondary">
-            <DropdownToggle caret> Reassign to </DropdownToggle>
-            <DropdownMenu>
-                <DropdownItem disabled> {props.department} </DropdownItem>
-                {generateNotActiveDepartments()}
-                
-            </DropdownMenu>
-        </ButtonDropdown>
+        <Dropdown overlay={menu} >
+            <Button>
+                Reassign to <DownOutlined /> 
+            </Button>      
+        </Dropdown>
         
     )
 

@@ -12,7 +12,7 @@ export const Alerts = (props) => {
             return <Alert color={props.color}> Error {props.id} marked as "Resolved" <CurrentTime /><CloseButton /></Alert>
 
         case (alerts.REASSIGNED_ALERT):
-            return <Alert color={props.color}>Error {props.id} was reassigned from  {props.oldDepartment} to {props.newDepartment}  <CurrentTime /> <CloseButton /> </Alert>
+            return <Alert color={props.color}>Error {props.id} was reassigned from  {generateDepartmentLabel(props.oldDepartment)} to {generateDepartmentLabel(props.newDepartment)}  <CurrentTime /> <CloseButton /> </Alert>
 
         default:
             return null

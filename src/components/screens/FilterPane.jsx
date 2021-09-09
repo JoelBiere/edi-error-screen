@@ -81,6 +81,7 @@ const FilterPane = () => {
     }
 
     return (
+        <React.Fragment> 
         <Row >
             <Col xs="auto" className='filterBox' >
                 <h5 className='header'>Filters</h5>
@@ -191,7 +192,8 @@ const FilterPane = () => {
 
             </Col>
         </Row>
-
+        <Divider />
+        </React.Fragment>
     )
 }
 

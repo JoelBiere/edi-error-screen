@@ -49,7 +49,7 @@ const TabBar = () => {
                         onClick={() => { toggle(imcc.DNJ); }}
                         
                     >
-                        <img src="https://www.godnj.com/wp-content/uploads/sites/8/2018/12/logo-dnj.png" alt='DNJ'></img>
+                        <img src="https://imcc.sharepoint.com/Lists/CompanyLogos/Attachments/16/dnj-logo.png" alt='DNJ'></img>
                     </NavLink>
                 </NavItem>
                 <NavItem className="tabItem">
@@ -58,7 +58,7 @@ const TabBar = () => {
                         onClick={() => { toggle(imcc.AIS); }}
                     >
                        
-                        <img src='https://shared.imcc.com/opco/logos/AIS-logo.png' alt='AIS'></img>
+                        <img src='https://imcc.sharepoint.com/Lists/CompanyLogos/Attachments/15/ais.png' alt='AIS'></img>
                     </NavLink>
                 </NavItem>
                 <NavItem className="tabItem">
@@ -66,7 +66,7 @@ const TabBar = () => {
                         className={classnames({ active: activeTab === imcc.GIS, navLink: true })}
                         onClick={() => { toggle(imcc.GIS); }}
                     >
-                        <img src='https://www.gulfintermodal.com/wp-content/uploads/sites/9/2018/12/gis-logo-top-nr.png' alt='GIS'></img>
+                        <img src='https://imcc.sharepoint.com/Lists/CompanyLogos/Attachments/17/gis-logo.png' alt='GIS'></img>
                     </NavLink>
                 </NavItem>
                 <NavItem className="tabItem">
@@ -74,7 +74,7 @@ const TabBar = () => {
                         className={classnames({ active: activeTab === imcc.HM, navLink: true })}
                         onClick={() => { toggle(imcc.HM); }}
                     >
-                        <img src = 'http://www.hmitusa.com/wp-content/uploads/sites/10/2018/12/logo-hm-top.png' alt="H&M"></img>
+                        <img src = 'https://imcc.sharepoint.com/Lists/CompanyLogos/Attachments/18/hm-logo.png' alt="H&M"></img>
                     </NavLink>
                 </NavItem>
                 <NavItem className="tabItem">
@@ -82,7 +82,7 @@ const TabBar = () => {
                         className={classnames({ active: activeTab === imcc.IMCG, navLink: true })}
                         onClick={() => { toggle(imcc.IMCG); }}
                     >
-                        <img src = "https://www.imcg.com/wp-content/uploads/sites/19/2018/09/imcg-logo-nr.png" alt="IMCG"></img>
+                        <img src = "https://imcc.sharepoint.com/Lists/CompanyLogos/Attachments/19/imcg.png" alt="IMCG"></img>
                     </NavLink>
                 </NavItem>
                 <NavItem className="tabItem">
@@ -90,7 +90,7 @@ const TabBar = () => {
                         className={classnames({ active: activeTab === imcc.OIS, navLink: true })}
                         onClick={() => { toggle(imcc.OIS); }}
                     >
-                        <img src= "https://www.ohiointermodalservices.com/wp-content/uploads/sites/12/2018/12/ois-logo-web.png" alt="OIS"></img>
+                        <img src= "https://imcc.sharepoint.com/Lists/CompanyLogos/Attachments/21/ois.png" alt="OIS"></img>
                     </NavLink>
                 </NavItem>
                 <NavItem className="tabItem">
@@ -98,7 +98,7 @@ const TabBar = () => {
                         className={classnames({ active: activeTab === imcc.PDS, navLink: true })}
                         onClick={() => { toggle(imcc.PDS); }}
                     >
-                        <img src="https://www.pdsusa.com/wp-content/uploads/sites/20/2019/06/logo-pds-nr.png" alt="PDS"></img>
+                        <img src="https://imcc.sharepoint.com/Lists/CompanyLogos/Attachments/26/imc-pds.png" alt="PDS"></img>
                     </NavLink>
                 </NavItem>
             </Nav>

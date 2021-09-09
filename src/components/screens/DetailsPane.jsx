@@ -1,14 +1,17 @@
-import { Button as ResultButton, Descriptions, Divider, Result, Steps } from 'antd';
+import { Button, Descriptions, Divider, Result, Steps, Space } from 'antd';
 import React from 'react';
-import { Button, Card, CardBody, CardTitle, Col, Container, Row } from 'reactstrap';
+import { Card, CardBody, CardTitle, Col, Container, Row } from 'reactstrap';
 import { cardResolved, cardResolvedAlert } from '../../actions/actions';
 import store from '../../store';
 import { generateDepartmentLabel } from '../ErrorCards/ErrCard';
 import ReassignButton from '../ReassignButton';
 import './DetailsPane.css';
-
+import { Redirect, useRouteMatch, Switch, Link } from 'react-router-dom'
+import ErrorHistoryScreen from './ErrorHistoryScreen';
 
 const { Step } = Steps;
+
+
 
 const DetailsPane = (props) => {
 
@@ -21,8 +24,6 @@ const DetailsPane = (props) => {
 
     return (
         <div>
-            <Divider style={{marginBottom:'0px'}}/>
-
             <Container className='mainContainer' >
 
                 <Row >
@@ -32,14 +33,21 @@ const DetailsPane = (props) => {
                             title={`Error ${props.errorID} was resolved`}
                             subTitle="Other information will go here"
                             extra={[
-                                <ResultButton type="primary" key='unresolve'>Mark as Unresolved</ResultButton>
+                                <Button type="primary" key='unresolve'>Mark as Unresolved</Button>
                             ]}
                         />
                         :
                         <Col sm="12" md={{ size: 6, offset: 6 }}>
                             <div className='topButtons'>
-                                <Button color="primary" onClick={handleResolve}>Mark as Resolved</Button>{' '}
-                                <ReassignButton {...props}></ReassignButton>
+                                <Space>
+                                    <Button type="primary" onClick={handleResolve}>Mark as Resolved</Button>
+                                    <ReassignButton {...props}></ReassignButton>
+
+                                    <Link to={`/history/${props.errorID}`} >
+                                        <Button > See Details Page</Button>
+                                    </Link>
+
+                                </Space>
                             </div>
                         </Col>}
                 </Row>
@@ -47,49 +55,20 @@ const DetailsPane = (props) => {
                 <Row className='bigSection' >
                     <CardBody>
                         <Card body className="text-center">
-
                             <CardTitle tag="h2"> Error ID: <span style={{ color: "#E63946" }}> {props.errorID} </span> </CardTitle>
-
                         </Card>
                     </CardBody>
 
                 </Row>
                 <Row>
-                    {/* <Col>
-                        <Row className='tableRow'>
-                            <Col sm="4" className="leftCol"> Assigned To</Col>
-                            <Col md="3" className='rightCol'> {generateDepartmentLabel(props.department)} </Col>
-                        </Row>
-                        <Row className='tableRow'>
-                            <Col sm="4" className="leftCol">IMC Company</Col>
-                            <Col md="8" className="rightCol"> {props.imcCompany}</Col>
-                        </Row>
-                        <Row className='tableRow'>
-                            <Col sm="4" className="leftCol"> Customer (EDI Code)</Col>
-                            <Col md="8" className="rightCol"> {`${props.customer} (${props.customerCode})`}</Col>
-                        </Row>
-                        <Row className="tableRow">
-                            <Col sm="4" className="leftCol"> Invoice Code </Col>
-                            <Col md="8" className="rightCol"> {props.invoiceCode} </Col>
-                        </Row>
-                        <Row className="tableRow">
-                            <Col sm="4" className="leftCol"> Date Error Occurred </Col>
-                            <Col md="8" className="rightCol"> {props.errorDate.toLocaleString()} </Col>
-                        </Row>
-                        <Row className="tableRow">
-                            <Col sm="4" className="leftCol"> Generated Error Message </Col>
-                            <Col md="8" className="rightCol"> {props.errMessage} </Col>
-                        </Row>
-                    </Col> */}
-
                     <Descriptions title="Error Details" bordered>
                         <Descriptions.Item label="Assigned To" span={2} >{generateDepartmentLabel(props.department)}</Descriptions.Item>
                         <Descriptions.Item label="Date Error Occurred"> {props.errorDate.toLocaleString()}</Descriptions.Item>
-                        <Descriptions.Item label="Operating Company"> {props.imcCompany}</Descriptions.Item>
+                        <Descriptions.Item label="Operating Company" span={2}> {props.imcCompany}</Descriptions.Item>
                         <Descriptions.Item label=" Customer (EDI Code)">{`${props.customer} (${props.customerCode})`}</Descriptions.Item>
-                        <Descriptions.Item label="Invoice Code"> {props.invoiceCode} </Descriptions.Item>
-                        <Descriptions.Item label="Generated Error Message" span={3}> {props.errMessage} </Descriptions.Item>
-                        <Descriptions.Item label="What this means..."> Lorem ipsum dolor sit amet, consectetur adipiscing elit </Descriptions.Item>
+                        <Descriptions.Item label="Invoice Code" span={2}> {props.invoiceCode} </Descriptions.Item>
+                        <Descriptions.Item label="Generated Error Message" span={2}> {props.errMessage} </Descriptions.Item>
+                        <Descriptions.Item label="What this means..." span={3}> Lorem ipsum dolor sit amet, consectetur adipiscing elit </Descriptions.Item>
                     </Descriptions>
                     <Divider />
                     <h4>Possible Solutions </h4>
@@ -107,42 +86,6 @@ const DetailsPane = (props) => {
                         <Step title="Waiting" description="This is a description." />
                         <Step title="Waiting" description="This is a description." />
                     </Steps>
-
-
-                    {/* <Col>
-                        <Row>
-                            <Col >
-                                <Card>
-                                    <CardBody>
-                                        <CardSubtitle tag="h6"> What this means...</CardSubtitle>
-
-                                        <CardText className="errMsg"> Lorem ipsum dolor sit amet, consectetur adipiscing elit</CardText>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Divider />
-                        </Row>
-
-                        <Row>
-                            <Col>
-                                <Card>
-                                    <CardBody>
-                                        <CardSubtitle tag="h6">Possible Solutions</CardSubtitle>
-                                        <CardText>
-                                            <ol>
-                                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                                                <li>Curabitur eget tellus odio. Praesent posuere lorem non nisl ullamcorper, a commodo dui interdum.</li>
-                                                <li>Nam et ultricies enim. Sed luctus lorem vitae condimentum mollis. Suspendisse efficitur tortor ac felis consequat, vitae ultricies justo elementum. Proin lobortis libero at arcu efficitur pellentesque. Mauris sed ante malesuada, condimentum eros vestibulum, elementum dolor.</li>
-                                                <li>Etiam ipsum ex, suscipit at ex non, porta ullamcorper sapien. Pellentesque condimentum, dui et laoreet lobortis, felis neque venenatis nulla, in convallis velit justo sed eros. Integer convallis gravida condimentum. Sed volutpat elit risus, a dapibus metus imperdiet quis</li>
-                                            </ol>
-
-                                        </CardText>
-                                    </CardBody>
-                                </Card>
-
-                            </Col>
-                        </Row>
-                    </Col> */}
                 </Row>
                 <Row >
                     {isResolved ?
@@ -150,12 +93,16 @@ const DetailsPane = (props) => {
                         :
                         <Col sm="12" md={{ size: 6, offset: 6 }}>
                             <div className='topButtons'>
-                                <Button color="primary" onClick={handleResolve}>Mark as Resolved</Button>{' '}
-                                <ReassignButton {...props}></ReassignButton>
+                                <Space>
+                                    <Button type="primary" onClick={handleResolve}>Mark as Resolved</Button>
+                                    <ReassignButton {...props}></ReassignButton>
+                                </Space>
                             </div>
                         </Col>}
                 </Row>
             </Container>
+
+           
         </div>
 
     )

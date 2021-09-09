@@ -93,31 +93,26 @@ const TabContents = (props) => {
             </Container>
 
             <Row>
-
-                <Col>
-
-                    <ErrPane>
-                        {errCardsShowing.map(errData => <ErrCard{...errData}></ErrCard>)}
-                    </ErrPane>
-
-                </Col>
-
-
-
-
+                
+                    <Col xs="auto">
+                    <ResizePanel direction='e'>
+                        <ErrPane>
+                            {errCardsShowing.map(errData => <ErrCard{...errData}></ErrCard>)}
+                        </ErrPane>
+                        </ResizePanel>
+                    </Col>
+                
                 {detailsRequested ?
-                    <ResizePanel direction='w'>
-                        <Col>
-                            <DetailsPane {...cardChosen} > </DetailsPane>
-                        </Col>
-                    </ResizePanel>
+
+                    <Col >
+                        <DetailsPane {...cardChosen} > </DetailsPane>
+                    </Col>
+
                     :
-                    <Col xs="5">
+                    <Col >
                         <Placeholder />
                     </Col>
                 }
-
-
 
             </Row>
         </React.Fragment>

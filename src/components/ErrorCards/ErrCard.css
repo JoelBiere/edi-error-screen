@@ -1,13 +1,13 @@
 .unselected {
     display: grid;
     margin: 10px;
-    box-shadow: 0 4px 8px 0px #bbb7b7fc;
+    box-shadow: 0 4px 8px 0px #b1aeaefc;
     transition: 0.3s;
     cursor: pointer;
     padding-left: 5px;
     padding-right: 5px;
     height: 120px;
-    background: #f1faee;
+    background: #faf8f8;
     text-align: center;
     grid-template-areas: 
         "dptLabel date date" 
@@ -17,19 +17,19 @@
 }
 
 .unselected:hover {
-    box-shadow: 0 6px 16px #ffffff;
+    box-shadow: 0 6px 16px #696969;
 }
 
 .selected {
     display: grid;
     margin: 10px;
-    box-shadow: 0 4px 8px 0px #bbb7b7fc;
+    box-shadow: 0 4px 8px 0px #b1aeaefc;
     transition: 0.3s;
     animation-name: grow;
     animation-fill-mode: forwards;
     animation-duration: .3s;
     height: 120px;
-    background: #f1faee;
+    background: #faf8f8;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -42,7 +42,7 @@
 }
 
 .selected:hover {
-    box-shadow: 0 6px 16px #ffffff;
+    box-shadow: 0 6px 16px #696969;
 }
 
 @keyframes grow {

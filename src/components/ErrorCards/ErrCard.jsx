@@ -79,7 +79,7 @@ const DepartmentSection = styled.div`
     grid-area: dptLabel;
 
 `
-const DepartmentLabel = styled.div`
+const DepartmentLabel = styled.span`
     background: #e76f51;
     margin-left: 0px;
     margin-top: 0px;
