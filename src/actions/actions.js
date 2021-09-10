@@ -42,13 +42,14 @@ export const cardReassigned = (department, id) => {
     }
 }
 
-export const cardResolved = (id) => {
- //AXIOS PUT REQUEST-- CHANGE ISRESOLVED
-
+export const cardMarkedResolved = (id, location) => {
+ //AXIOS PUT REQUEST-- CHANGE markedResolved
+ 
     return {
         type: actions.CARD_RESOLVED,
         payload: {
-            idOfResolved: id
+            idOfResolved: id,
+            location: location
         }
     }
 }

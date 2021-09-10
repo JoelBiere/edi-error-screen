@@ -1,4 +1,4 @@
-.demo-infinite-container { 
+.infinite-container-filter-pane { 
     
     padding: 8px 24px;
     overflow: auto;
@@ -6,11 +6,10 @@
     border-radius: 4px;
     margin: 10px;
     background: #F8F9FA;
-    width: 41vw;
-    min-width: 400px;
-    max-width: 880px;
+    width:35vw;
+    height: 20vh;
   }
-  .demo-loading-container {
+  .loading-container-filter-pane {
     position: absolute;
     bottom: 0px;
     width: 100%;

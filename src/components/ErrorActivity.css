@@ -1,14 +1,12 @@
 .demo-infinite-container { 
-    
     padding: 8px 24px;
     overflow: auto;
     border: 1px solid #e8e8e8;
     border-radius: 4px;
     margin: 10px;
     background: #F8F9FA;
-    width: 41vw;
-    min-width: 400px;
-    max-width: 880px;
+    height: 38vh;
+    
   }
   
   .demo-loading-container {

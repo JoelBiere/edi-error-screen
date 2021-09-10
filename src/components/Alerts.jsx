@@ -2,17 +2,17 @@ import { Alert, Button } from 'reactstrap'
 import * as alerts from '../actions/alertTypes'
 import store from '../store'
 import { dismissAlert } from '../actions/actions'
-import { generateDepartmentLabel } from './ErrorCards/ErrCard'
+import { generateDepartmentLabel } from '../utility/generateComponents'
 import styled from 'styled-components'
 
 export const Alerts = (props) => {
    
     switch (props.alertType) {
         case (alerts.RESOLVED_ALERT):
-            return <Alert color={props.color}> Error {props.id} marked as "Resolved" <CurrentTime /><CloseButton /></Alert>
+            return <Alert color="dark"> Error {props.id} marked as "Resolved" <CurrentTime /><CloseButton /></Alert>
 
         case (alerts.REASSIGNED_ALERT):
-            return <Alert color={props.color}>Error {props.id} was reassigned from  {generateDepartmentLabel(props.oldDepartment)} to {generateDepartmentLabel(props.newDepartment)}  <CurrentTime /> <CloseButton /> </Alert>
+            return <Alert color="dark">Error {props.id} was reassigned from  {generateDepartmentLabel(props.oldDepartment)} to {generateDepartmentLabel(props.newDepartment)}  <CurrentTime /> <CloseButton /> </Alert>
 
         default:
             return null

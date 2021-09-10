@@ -1,9 +1,9 @@
 import { Button, Descriptions, Divider, Result, Steps, Space } from 'antd';
 import React from 'react';
 import { Card, CardBody, CardTitle, Col, Container, Row } from 'reactstrap';
-import { cardResolved, cardResolvedAlert } from '../../actions/actions';
+import { cardMarkedResolved, cardResolvedAlert } from '../../actions/actions';
 import store from '../../store';
-import { generateDepartmentLabel } from '../ErrorCards/ErrCard';
+import { generateDepartmentLabel } from '../../utility/generateComponents';
 import ReassignButton from '../ReassignButton';
 import './DetailsPane.css';
 import { Redirect, useRouteMatch, Switch, Link } from 'react-router-dom'
@@ -16,7 +16,7 @@ const { Step } = Steps;
 const DetailsPane = (props) => {
 
     const handleResolve = () => {
-        store.dispatch(cardResolved(props.errorID))
+        store.dispatch(cardMarkedResolved(props.errorID))
         store.dispatch(cardResolvedAlert(props.errorID))
     }
     const isResolved = props.isResolved

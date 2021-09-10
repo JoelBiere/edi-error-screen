@@ -81,118 +81,116 @@ const FilterPane = () => {
     }
 
     return (
-        <React.Fragment> 
-        <Row >
-            <Col xs="auto" className='filterBox' >
-                <h5 className='header'>Filters</h5>
-
-                <Divider className='header' />
-
-                <h7 className="switchLabel"> Show Resolved </h7>
-
-                <Switch
-                    size='large'
-                    style={{ width: '20%', }}
-                    className='switch'
-                    onChange={toggleResolved}
-                    checked={useSelector(state => state.cardsReducer.includeResolved)}
-                    checkedChildren={<CheckOutlined />}
-                    unCheckedChildren={<CloseOutlined />}>
-                </Switch>
-
-                <h7 className='orderLabel'> Order By:</h7>
-
-                <ButtonGroup className='orderBy' size="sm">
-                    <Button
-                        className="btn shadow-none"
-                        outline={!radioStatus.department}
-                        color="secondary"
-                        onClick={() => sortCards('department')}
-                    >
-                        Department
-                    </Button>
-                    <Button
-                        className="btn shadow-none"
-                        outline={!radioStatus.errID}
-                        color="secondary"
-                        onClick={() => sortCards('errID')}
-                    >
-                        ID
-                    </Button>
-                    <Button
-                        className="btn shadow-none"
-                        outline={!radioStatus.invoiceAmount}
-                        color="secondary"
-                        onClick={() => sortCards('invoiceAmnt')}
-                    >
-                        $$$
-                    </Button>
-                    <Button
-                        className="btn shadow-none"
-                        outline={!radioStatus.client}
-                        color="secondary"
-                        onClick={() => sortCards('client')}
-                    >
-                        Client
-                    </Button>
-
-                    <ButtonDropdown className="orderBy" color='secondary' isOpen={dropdownOpen} toggle={toggle} direction='right'>
-                        <DropdownToggle caret outline size='sm'>
-                            {''}
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem onClick={() => sortCards('mostRecent')}> Most Recent </DropdownItem>
-                            <DropdownItem onClick={() => sortCards('leastRecent')}> Least Recent</DropdownItem>
-                        </DropdownMenu>
-                    </ButtonDropdown>
-                </ButtonGroup>
-
-            </Col>
+        <React.Fragment>
+            <Row >
+                <Col xs="auto" className='filterBox' >
 
 
-            <Col xs='auto' className='metricsBox'>
-                <h5 className="header">Metrics</h5>
-                <Divider className="header" />
+                    <Divider className='header'> Filters </Divider>
 
-                <Statistic
-                    className="fact1"
-                    title="Total Errors"
-                    value={useSelector(state => state.cardsReducer.errCardsShowing.length)}
-                    valueStyle={{ color: 'red' }}
-                    prefix={<WarningOutlined />}
-                />
-                <Statistic
-                    className="fact2"
-                    title="Total Resolved"
-                    value={findTotalResolved(currentOperatingCompany)}
-                    prefix={<IssuesCloseOutlined />}
-                    valueStyle={{ color: '#5cb85c' }}
-                />
-                <Statistic
-                    className="fact3"
-                    title="Oldest Error"
-                    value={findElapsedDays()}
-                    suffix="days"
-                    prefix={<ClockCircleOutlined />}
-                />
-                <Statistic
-                    className="fact4"
-                    title="Total Uncollected Revenue"
-                    value={Math.ceil(useSelector(state => state.cardsReducer.errCardsShowing.reduce((prev, cur) => prev + cur.price, 0)) * 100) / 100}
-                    prefix={<DollarOutlined />}
-                    valueStyle={{ color: 'red' }}
-                />
-            </Col>
+                    <h7 className="switchLabel"> Show Resolved </h7>
 
-            <Col className='activityBox'>
-                <h5 className="header">Activity</h5>
+                    <Switch
+                        size='large'
+                        style={{ width: '20%', }}
+                        className='switch'
+                        onChange={toggleResolved}
+                        checked={useSelector(state => state.cardsReducer.includeResolved)}
+                        checkedChildren={<CheckOutlined />}
+                        unCheckedChildren={<CloseOutlined />}>
+                    </Switch>
 
-                
-                <Activity className='content' />
+                    <h7 className='orderLabel'> Order By:</h7>
 
-            </Col>
-        </Row>
-        <Divider />
+                    <ButtonGroup className='orderBy' size="sm">
+                        <Button
+                            className="btn shadow-none"
+                            outline={!radioStatus.department}
+                            color="secondary"
+                            onClick={() => sortCards('department')}
+                        >
+                            Department
+                        </Button>
+                        <Button
+                            className="btn shadow-none"
+                            outline={!radioStatus.errID}
+                            color="secondary"
+                            onClick={() => sortCards('errID')}
+                        >
+                            ID
+                        </Button>
+                        <Button
+                            className="btn shadow-none"
+                            outline={!radioStatus.invoiceAmount}
+                            color="secondary"
+                            onClick={() => sortCards('invoiceAmnt')}
+                        >
+                            $$$
+                        </Button>
+                        <Button
+                            className="btn shadow-none"
+                            outline={!radioStatus.client}
+                            color="secondary"
+                            onClick={() => sortCards('client')}
+                        >
+                            Client
+                        </Button>
+
+                        <ButtonDropdown className="orderBy" color='secondary' isOpen={dropdownOpen} toggle={toggle} direction='right'>
+                            <DropdownToggle caret outline size='sm'>
+                                {''}
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem onClick={() => sortCards('mostRecent')}> Most Recent </DropdownItem>
+                                <DropdownItem onClick={() => sortCards('leastRecent')}> Least Recent</DropdownItem>
+                            </DropdownMenu>
+                        </ButtonDropdown>
+                    </ButtonGroup>
+
+                </Col>
+
+
+                <Col xs='auto' className='metricsBox'>
+
+                    <Divider className='header'> Metrics </Divider>
+
+                    <Statistic
+                        className="fact1"
+                        title="Total Errors"
+                        value={useSelector(state => state.cardsReducer.errCardsShowing.length)}
+                        valueStyle={{ color: 'red' }}
+                        prefix={<WarningOutlined />}
+                    />
+                    <Statistic
+                        className="fact2"
+                        title="Total Resolved"
+                        value={findTotalResolved(currentOperatingCompany)}
+                        prefix={<IssuesCloseOutlined />}
+                        valueStyle={{ color: '#5cb85c' }}
+                    />
+                    <Statistic
+                        className="fact3"
+                        title="Oldest Error"
+                        value={findElapsedDays()}
+                        suffix="days"
+                        prefix={<ClockCircleOutlined />}
+                    />
+                    <Statistic
+                        className="fact4"
+                        title="Total Uncollected Revenue"
+                        value={Math.ceil(useSelector(state => state.cardsReducer.errCardsShowing.reduce((prev, cur) => prev + cur.price, 0)) * 100) / 100}
+                        prefix={<DollarOutlined />}
+                        valueStyle={{ color: 'red' }}
+                    />
+                </Col>
+
+                <Col xs="5">
+                    <Divider className='header'> Site Activity </Divider>
+                    <Activity className='content' />
+
+                </Col>
+            </Row>
+            <Divider />
         </React.Fragment>
     )
 }

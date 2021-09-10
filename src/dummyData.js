@@ -54,6 +54,7 @@ const dummyData = (numOfData) => {
                 errMessage: `Err of ${i} had an error--fix plz!!`,
                 price: 10 * i - i*3 +2.40,
                 department: departmentAssigner(),
+                markedResolved: false,
                 isResolved: false
             }
         )

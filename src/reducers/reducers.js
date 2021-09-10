@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom'
 import * as actions from '../actions/actionTypes'
 import * as imcc from '../actions/imcOperatingCompanies'
 
@@ -9,6 +10,7 @@ const initialState = {
     displayedCard: {},
     cardChosenID: undefined,
     resolvedCards: [],
+    markedResolvedCards: [],
     detailsShown: false,
     sortedBy: {
         department: false,
@@ -51,14 +53,14 @@ export function cardsReducer(state = initialState, action) {
 
         case (actions.CARD_RESOLVED):
 
-            let updatedSet = state.errData.map(obj => obj.errorID !== action.payload.idOfResolved ? obj : { ...obj, isResolved: true })
+            let updatedSet = state.errData.map(obj => obj.errorID !== action.payload.idOfResolved ? obj : { ...obj, markedResolved: true })
 
             let showingCards;
             let displayedCard;
-
-            if (state.includeResolved) {
-                showingCards = state.errCardsShowing.map(obj => obj.errorID !== action.payload.idOfResolved ? obj : { ...obj, isResolved: true })
-                displayedCard = { ...state.displayedCard, isResolved: true }
+           
+            if (state.includeResolved || ( action.payload.location && action.payload.location.pathname.slice(0, 8) === '/history/')) {
+                showingCards = state.errCardsShowing.map(obj => obj.errorID !== action.payload.idOfResolved ? obj : { ...obj, markedResolved: true })
+                displayedCard = { ...state.displayedCard, markedResolved: true }
             } else if (!state.includeResolved) {
                 showingCards = state.errCardsShowing.filter(obj => obj.errorID !== action.payload.idOfResolved)
                 displayedCard = undefined
@@ -66,7 +68,7 @@ export function cardsReducer(state = initialState, action) {
 
             return {
                 ...state,
-                resolvedCards: [...state.resolvedCards, updatedSet.find(obj => obj.errorID === action.payload.idOfResolved)],
+                markedResolvedCards: [...state.resolvedCards, updatedSet.find(obj => obj.errorID === action.payload.idOfResolved)],
                 errData: updatedSet,
                 displayedCard: displayedCard,
                 detailsShown: state.includeResolved ? true : false,
@@ -80,13 +82,13 @@ export function cardsReducer(state = initialState, action) {
                 if (state.includeResolved) {
                     shownCards = state.errData.filter(obj => obj.imcCompany === action.payload.operatingCompany)
                 } else {
-                    shownCards = state.errData.filter(obj => obj.imcCompany === action.payload.operatingCompany && !obj.isResolved)
+                    shownCards = state.errData.filter(obj => obj.imcCompany === action.payload.operatingCompany && !obj.isResolved && !obj.markedResolved)
                 }
 
             } else if (state.includeResolved) {
                 shownCards = state.errData
             } else {
-                shownCards = state.errData.filter(obj => !obj.isResolved)
+                shownCards = state.errData.filter(obj => !obj.isResolved && !obj.markedResolved)
             }
 
             return {
@@ -111,9 +113,9 @@ export function cardsReducer(state = initialState, action) {
                 }
 
             } else if (!action.payload.checked && state.operatingCompany === imcc.ALL) {
-                cardsShowing = state.errData.filter(obj => !obj.isResolved)
+                cardsShowing = state.errData.filter(obj => !obj.isResolved && !obj.markedResolved)
             } else if (!action.payload.checked) {
-                cardsShowing = state.errData.filter(obj => !obj.isResolved && obj.imcCompany === state.operatingCompany)
+                cardsShowing = state.errData.filter(obj => !obj.isResolved && !obj.markedResolved && obj.imcCompany === state.operatingCompany)
             }
 
 

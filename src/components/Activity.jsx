@@ -56,7 +56,7 @@ const Activity = () => {
 
 
     return (
-        <div className="demo-infinite-container">
+        <div className="infinite-container-filter-pane">
             <InfiniteScroll
                 initialLoad={false}
                 pageStart={0}
@@ -81,7 +81,7 @@ const Activity = () => {
                     )}
                 >
                     { loading && hasMore ?
-                        <div className="demo-loading-container">
+                        <div className="loading-container-filter-pane">
                             <Spin />
                         </div>
                      : !loading && !hasMore ?

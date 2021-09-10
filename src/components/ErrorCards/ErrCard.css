@@ -4,15 +4,15 @@
     box-shadow: 0 4px 8px 0px #b1aeaefc;
     transition: 0.3s;
     cursor: pointer;
-    padding-left: 5px;
+    
     padding-right: 5px;
     height: 120px;
     background: #faf8f8;
     text-align: center;
     grid-template-areas: 
         "dptLabel date date" 
-        "err err err" 
-        "company company price";
+        "err status status" 
+        "price company company ";
     grid-template-columns: 80px auto 50px;
 }
 
@@ -31,12 +31,12 @@
     height: 120px;
     background: #faf8f8;
     text-align: center;
-    padding-left: 5px;
+    
     padding-right: 5px;
     grid-template-areas: 
         "dptLabel date date" 
-        "err err err" 
-        "company company price";
+        "err status status" 
+        "price company company";
     grid-template-columns: 80px auto 50px;
     cursor: pointer;
 }
@@ -51,7 +51,7 @@
     }
     to {
         transform: scale(1.2);
-        background: #a8dadc;
+        background: #dbe0e0;
         font: large;
     }
 }

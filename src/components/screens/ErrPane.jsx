@@ -5,7 +5,7 @@ const ErrPane = styled.div`
     overflow: auto;
     padding-right: 15px;
     padding-left: 15px;
-    background: #eaecee;
+    background: #F8F9FA;
     min-height: 18vh;
     height: 68vh;
     min-width: 40px;
@@ -14,7 +14,7 @@ const ErrPane = styled.div`
     margin-bottom: 10px;
     margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(120px, 120px));
     gap: 25px 25px;
 `
