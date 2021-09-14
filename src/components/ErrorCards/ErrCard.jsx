@@ -1,29 +1,27 @@
+import { CheckCircleOutlined, CloseCircleOutlined, SyncOutlined } from '@ant-design/icons'
+import { Badge, Tag } from 'antd'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { cardSelected, detailsToggled } from '../../actions/actions'
-import { Badge, Tag } from 'antd'
-import { SyncOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons'
-import store from '../../store'
+import { generateResolvedStatusTag, convertMsToDate } from '../../utility/generateComponents'
 import './ErrCard.css'
 
+
 const ErrCard = (props) => {
+    const dispatch = useDispatch()
 
     const detailsRequested = useSelector(state => state.cardsReducer.detailsShown)
 
     const handleCardSelect = () => {
-        store.dispatch(cardSelected(props.errorID))
+        dispatch(cardSelected(props.errorID))
         if (!detailsRequested) {
-            store.dispatch(detailsToggled())
+            dispatch(detailsToggled())
         }
 
     }
 
     const selectedCardID = useSelector(state => state.cardsReducer.cardChosenID)
-
-
-
-    
 
     return (
         <div className={selectedCardID === props.errorID ? 'selected' : 'unselected'} onClick={handleCardSelect}>
@@ -32,28 +30,20 @@ const ErrCard = (props) => {
                 {generateDepartmentRibbon(props.department)}
             </DepartmentSection>
 
-            <Date>
-                {props.errorDate.toDateString()}
-            </Date>
+            <DateArea>
+                {convertMsToDate(props.errorDate).toDateString()}
+                
+            </DateArea>
 
             <ErrID style={{ color: 'black' }}>
+                
                 Error {props.errorID}
             </ErrID>
 
             <Status>
-            {
-                props.isResolved ?
-                    <Tag color="success" icon={<CheckCircleOutlined />}>Resolved</Tag>
-
-                : props.markedResolved ?
-                    <Tag color="processing" icon={<SyncOutlined spin />}>validating</Tag>
-
-                :
-                    <Tag color="error" icon={<CloseCircleOutlined />}> Unresolved</Tag>
-
-
-            }
+                {generateResolvedStatusTag(props)}
             </Status>
+
             <CompanyLabel>
                 {props.customer}
             </CompanyLabel>
@@ -101,7 +91,7 @@ const ErrID = styled.div`
     grid-area: err;
     font-size: large;
 `
-const Date = styled.div`
+const DateArea = styled.div`
     grid-area: date;
     
 `

@@ -1,20 +1,20 @@
 import {
-    CheckCircleOutlined, CloseCircleOutlined, VerticalAlignTopOutlined, SyncOutlined
+    CheckCircleOutlined, CloseCircleOutlined, SyncOutlined, VerticalAlignTopOutlined
 } from '@ant-design/icons';
 import { Button, Col, Descriptions, Divider, PageHeader, Row, Space, Statistic, Switch, Tag, Timeline } from 'antd';
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 import { cardMarkedResolved, cardResolvedAlert } from '../../actions/actions';
-import store from '../../store';
+import { generateDepartmentLabel, generateResolvedStatusTag, convertMsToDate } from '../../utility/generateComponents';
 import ErrorActivity from '../ErrorActivity';
-import { generateDepartmentLabel } from '../../utility/generateComponents';
 import ReassignButton from '../ReassignButton';
 
 
 const ErrorHistoryScreen = () => {
     let { errID } = useParams()
+    const dispatch = useDispatch()
 
     //pulls from API again so data still exists on browser refresh
     let location = useLocation();
@@ -24,8 +24,8 @@ const ErrorHistoryScreen = () => {
     console.log(selectedError)
 
     const handleResolve = () => {
-        store.dispatch(cardMarkedResolved(selectedError.errorID, location))
-        store.dispatch(cardResolvedAlert(selectedError.errorID))
+        dispatch(cardMarkedResolved(selectedError.errorID, location))
+        dispatch(cardResolvedAlert(selectedError.errorID))
     }
 
     const [reverse, setReverse] = useState(false)
@@ -39,18 +39,7 @@ const ErrorHistoryScreen = () => {
             <PageHeader
                 className="site-page-header"
                 onBack={() => window.history.back()}
-                tags=   {
-                    selectedError.isResolved ?
-                        <Tag color="success" icon={<CheckCircleOutlined />}>Resolved</Tag>
-    
-                    : selectedError.markedResolved ?
-                        <Tag color="processing" icon={<SyncOutlined spin />}>validating</Tag>
-    
-                    :
-                        <Tag color="error" icon={<CloseCircleOutlined />}> Unresolved</Tag>
-    
-    
-                }
+                tags= {generateResolvedStatusTag(selectedError) }
                 title={<span>Error <span style={{ color: "red" }}>{errID}</span></span>}
                 subTitle="status"
                 extra={[
@@ -61,9 +50,9 @@ const ErrorHistoryScreen = () => {
                     </Space>
                 ]}
             >
-                <Descriptions title="Error Details" >
+                <Descriptions title="Error Details" bordered >
                     <Descriptions.Item label="Assigned To"  >{generateDepartmentLabel(selectedError.department)}</Descriptions.Item>
-                    <Descriptions.Item label="Date Error Occurred"> {selectedError.errorDate.toLocaleString()}</Descriptions.Item>
+                    <Descriptions.Item label="Date Error Occurred"> {convertMsToDate(selectedError.errorDate).toLocaleString()}</Descriptions.Item>
                     <Descriptions.Item label="Operating Company" > {selectedError.imcCompany}</Descriptions.Item>
                     <Descriptions.Item label=" Customer">{`${selectedError.customer}`}</Descriptions.Item>
                     <Descriptions.Item label="EDI Code">{`${selectedError.customerCode}`}</Descriptions.Item>

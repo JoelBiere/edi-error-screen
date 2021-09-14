@@ -1,29 +1,29 @@
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ResizePanel from "react-resize-panel";
+import { Col, Container, Row } from 'reactstrap';
 import { operatingCompanyChanged } from '../actions/actions';
 import * as imcc from '../actions/imcOperatingCompanies';
-import store from '../store';
-import { Row, Col, Container } from 'reactstrap'
-import ErrPane from './screens/ErrPane';
 import ErrCard from '../components/ErrorCards/ErrCard';
-import './AlternateTabBar.css'
-import FilterPane from './screens/FilterPane'
+import './AlternateTabBar.css';
 import DetailsPane from './screens/DetailsPane';
-import Placeholder from './screens/Placeholder'
-import ResizePanel from "react-resize-panel"
+import ErrPane from './screens/ErrPane';
+import FilterPane from './screens/FilterPane';
+import Placeholder from './screens/Placeholder';
 
 const { TabPane } = Tabs;
 
 
 
 const AlternateTabBar = (props) => {
+    const dispatch = useDispatch()
 
 
     const toggle = (operatingCompany) => {
         //to change ErrCards state AND change detailsRequested State
-        store.dispatch(operatingCompanyChanged(operatingCompany))
+        dispatch(operatingCompanyChanged(operatingCompany))
 
 
     }

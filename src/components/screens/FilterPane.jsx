@@ -2,17 +2,18 @@ import { CheckOutlined, ClockCircleOutlined, CloseOutlined, DollarOutlined, Issu
 import { Divider, Statistic, Switch } from 'antd';
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonDropdown, ButtonGroup, Col, DropdownItem, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
 import { showResolvedToggled, sortedByClient, sortedByDepartment, sortedByErrorID, sortedByInvoiceAmount, sortedByLeastRecent, sortedByMostRecent } from '../../actions/actions';
 import * as imcc from '../../actions/imcOperatingCompanies';
-import store from '../../store';
 import Activity from '../Activity';
 import './FilterPane.css';
 
 const FilterPane = () => {
+    const dispatch = useDispatch()
+
     const toggleResolved = (checked) => {
-        store.dispatch(showResolvedToggled(checked))
+        dispatch(showResolvedToggled(checked))
     }
 
     const resolvedCards = useSelector(state => state.cardsReducer.resolvedCards)
@@ -26,7 +27,7 @@ const FilterPane = () => {
         if (oldestError === undefined) {
             return <LoadingOutlined />
         }
-        let end = oldestError.errorDate.getTime()
+        let end = oldestError.errorDate
         let start = Date.now()
         let differenceInTime = end - start
 
@@ -56,22 +57,22 @@ const FilterPane = () => {
         console.log(value)
         switch (value) {
             case ('department'):
-                store.dispatch(sortedByDepartment())
+                dispatch(sortedByDepartment())
                 break;
             case ('errID'):
-                store.dispatch(sortedByErrorID())
+                dispatch(sortedByErrorID())
                 break;
             case ('mostRecent'):
-                store.dispatch(sortedByMostRecent())
+                dispatch(sortedByMostRecent())
                 break;
             case ('leastRecent'):
-                store.dispatch(sortedByLeastRecent())
+                dispatch(sortedByLeastRecent())
                 break;
             case ('invoiceAmnt'):
-                store.dispatch(sortedByInvoiceAmount())
+                dispatch(sortedByInvoiceAmount())
                 break;
             case ('client'):
-                store.dispatch(sortedByClient())
+                dispatch(sortedByClient())
                 break;
             default:
                 return null

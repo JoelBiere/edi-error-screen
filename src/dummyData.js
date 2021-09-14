@@ -47,7 +47,7 @@ const dummyData = (numOfData) => {
             {
                 errorID: i,
                 invoiceCode: `${i}${i + 9}${i - 3}${i}`,
-                errorDate: new Date(1985 + i, 8, i),
+                errorDate: new Date(1985 + i, 8, i).getTime(), //must be in miliseconds
                 customer: `${i} company`,
                 customerCode: `${i}${i + 1}${i - 4}${i}`,
                 imcCompany: operatingCompanyAssigner(),

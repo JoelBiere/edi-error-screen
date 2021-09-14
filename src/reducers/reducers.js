@@ -174,7 +174,7 @@ export function cardsReducer(state = initialState, action) {
                 sortedBy: { ...initialState.sortedBy, client: true },
                 errCardsShowing: sortedByClient.filter(obj => obj === obj)
             }
-
+            
         default:
             return state;
     }

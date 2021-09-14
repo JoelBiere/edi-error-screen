@@ -6,12 +6,16 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import store from './store'
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { LoadingOutlined } from '@ant-design/icons'
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
+    <Provider store={store.store}>
+      <PersistGate loading={<LoadingOutlined />} persistor={store.persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

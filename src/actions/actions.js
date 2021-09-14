@@ -116,6 +116,15 @@ export const sortedByClient = () => {
         type: actions.SORTED_BY_CLIENT
     }
 }
+
+//dev use only
+
+// export const stateReset = () => {
+//     return{
+//         type: 'RESET'
+//     }
+// }
+
 //alerts
 export const dismissAlert = () => {
     return{

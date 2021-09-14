@@ -1,6 +1,7 @@
 import { CheckCircleOutlined, WarningOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import 'antd/dist/antd.css';
+import { MenuItemGroup } from 'rc-menu';
 import { default as React, useState } from 'react';
 import { Link } from "react-router-dom";
 
@@ -27,7 +28,6 @@ const NavigationBar = () => {
             <Menu.Item key="resolved" icon={<CheckCircleOutlined />} >
                 <Link to="/resolved">Resolved Errors </Link>
             </Menu.Item>
-
         </Menu>
 
 

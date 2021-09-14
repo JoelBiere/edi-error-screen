@@ -11,7 +11,7 @@ a. Operating Companies permissions
 a. Pending resolution
 b. Test Resolution
 i. Calls validation service
-10. 
+1
 
 
 Support Needed From Microservice or Backend
@@ -21,4 +21,9 @@ Support Needed From Microservice or Backend
 
 NEXT STEPS:
 
-3. handle sorting cards
+1. Redux Middleware
+ - Logging? How does JHipster do it--
+ -redux-persisit --this stores the state so that the state is maintained passed refreshing. Is this what I want? How does this work in middleware?
+
+2. Connecting the middlware to the Progress Timeline in errhistory as well as making the errhistory page accessible even on refreshing
+

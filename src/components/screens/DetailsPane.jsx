@@ -1,13 +1,13 @@
-import { Button, Descriptions, Divider, Result, Steps, Space } from 'antd';
+import { Button, Descriptions, Divider, Result, Space, Steps } from 'antd';
 import React from 'react';
-import { Card, CardBody, CardTitle, Col, Container, Row } from 'reactstrap';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Card, CardBody, CardTitle, Col, Container, Row, CardSubtitle } from 'reactstrap';
 import { cardMarkedResolved, cardResolvedAlert } from '../../actions/actions';
-import store from '../../store';
-import { generateDepartmentLabel } from '../../utility/generateComponents';
+import { generateDepartmentLabel, generateResolvedStatusTag, convertMsToDate  } from '../../utility/generateComponents';
 import ReassignButton from '../ReassignButton';
 import './DetailsPane.css';
-import { Redirect, useRouteMatch, Switch, Link } from 'react-router-dom'
-import ErrorHistoryScreen from './ErrorHistoryScreen';
+
 
 const { Step } = Steps;
 
@@ -15,9 +15,11 @@ const { Step } = Steps;
 
 const DetailsPane = (props) => {
 
+    const dispatch = useDispatch()
+
     const handleResolve = () => {
-        store.dispatch(cardMarkedResolved(props.errorID))
-        store.dispatch(cardResolvedAlert(props.errorID))
+        dispatch(cardMarkedResolved(props.errorID))
+        dispatch(cardResolvedAlert(props.errorID))
     }
     const isResolved = props.isResolved
 
@@ -56,6 +58,9 @@ const DetailsPane = (props) => {
                     <CardBody>
                         <Card body className="text-center">
                             <CardTitle tag="h2"> Error ID: <span style={{ color: "#E63946" }}> {props.errorID} </span> </CardTitle>
+                            <CardSubtitle>
+                                {generateResolvedStatusTag(props)}
+                            </CardSubtitle>
                         </Card>
                     </CardBody>
 
@@ -63,7 +68,7 @@ const DetailsPane = (props) => {
                 <Row>
                     <Descriptions title="Error Details" bordered>
                         <Descriptions.Item label="Assigned To" span={2} >{generateDepartmentLabel(props.department)}</Descriptions.Item>
-                        <Descriptions.Item label="Date Error Occurred"> {props.errorDate.toLocaleString()}</Descriptions.Item>
+                        <Descriptions.Item label="Date Error Occurred"> {convertMsToDate(props.errorDate).toLocaleString()}</Descriptions.Item>
                         <Descriptions.Item label="Operating Company" span={2}> {props.imcCompany}</Descriptions.Item>
                         <Descriptions.Item label=" Customer (EDI Code)">{`${props.customer} (${props.customerCode})`}</Descriptions.Item>
                         <Descriptions.Item label="Invoice Code" span={2}> {props.invoiceCode} </Descriptions.Item>
@@ -101,8 +106,6 @@ const DetailsPane = (props) => {
                         </Col>}
                 </Row>
             </Container>
-
-           
         </div>
 
     )

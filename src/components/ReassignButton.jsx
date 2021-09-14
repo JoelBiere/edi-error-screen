@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { DownOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Menu } from 'antd';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { cardReassigned, cardReassignedAlert } from '../actions/actions';
 // import { Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import * as department from '../ImcDepartments'
-import store from '../store';
-import { cardReassigned, cardReassignedAlert } from '../actions/actions'
+import * as department from '../ImcDepartments';
 
 const ReassignButton = (props) => {
     
+    const dispatch = useDispatch()
 
     const handleReassign = (newDepartment) =>{
-        store.dispatch(cardReassigned( newDepartment, props.errorID))
-        store.dispatch(cardReassignedAlert(newDepartment, props.errorID, props.department))
+        dispatch(cardReassigned( newDepartment, props.errorID))
+        dispatch(cardReassignedAlert(newDepartment, props.errorID, props.department))
     }
 
     const generateNotActiveDepartments = () => {

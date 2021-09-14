@@ -1,9 +1,10 @@
+import { useDispatch } from 'react-redux'
 import { Alert, Button } from 'reactstrap'
-import * as alerts from '../actions/alertTypes'
-import store from '../store'
-import { dismissAlert } from '../actions/actions'
-import { generateDepartmentLabel } from '../utility/generateComponents'
 import styled from 'styled-components'
+import { dismissAlert } from '../actions/actions'
+import * as alerts from '../actions/alertTypes'
+import { generateDepartmentLabel } from '../utility/generateComponents'
+
 
 export const Alerts = (props) => {
    
@@ -20,13 +21,16 @@ export const Alerts = (props) => {
 }
 
 const CurrentTime = () =>{
+    
+
     const now = new Date
 
      return now.toLocaleString()
 }
 const CloseButton = () => {
+    const dispatch = useDispatch()
     const handleDismiss = () => {
-        store.dispatch(dismissAlert())
+        dispatch(dismissAlert())
     }
     return(
         <Button style={{backgroundColor: "Transparent", border: 'none'}} close onClick={handleDismiss}></Button>

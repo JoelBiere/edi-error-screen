@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row } from 'reactstrap';
 import { cardsLoaded } from '../../actions/actions';
-import store from '../../store';
 import AlternateTabBar from '../AlternateTabBar';
 import Footer from '../Footer';
-import { useSelector } from 'react-redux';
+
 
 const Body = () => {
 
-    useEffect(() => store.dispatch(cardsLoaded()), [])
-
     let errCardsShowing = useSelector(state => state.cardsReducer.errCardsShowing);
+    
     return (
         <Container fluid={true}>
 

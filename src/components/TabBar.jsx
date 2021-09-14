@@ -1,17 +1,17 @@
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-import { useSelector } from 'react-redux';
+import classnames from 'classnames';
 import { useState } from 'react';
-import classnames from 'classnames'
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap';
+import { operatingCompanyChanged } from '../actions/actions';
+import * as imcc from '../actions/imcOperatingCompanies';
 import ErrCard from '../components/ErrorCards/ErrCard';
 import ErrPane from './screens/ErrPane';
-import store from '../store';
-import * as imcc from '../actions/imcOperatingCompanies'
-import { detailsToggled, operatingCompanyChanged } from '../actions/actions';
-import './TabBarStyles.css'
-import styled from 'styled-components'
+import './TabBarStyles.css';
 
 
 const TabBar = () => {
+    const dispatch = useDispatch()
+
     const [activeTab, setActiveTab] = useState(imcc.ALL);
 
     let errCardsShowing = useSelector(state => state.cardsReducer.errCardsShowing);
@@ -25,7 +25,7 @@ const TabBar = () => {
             setActiveTab(operatingCompany);
 
             //to change ErrCards state AND change detailsRequested State
-            store.dispatch(operatingCompanyChanged(operatingCompany))
+            dispatch(operatingCompanyChanged(operatingCompany))
             
         }
     }
